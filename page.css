@@ -664,7 +664,7 @@
   display: grid;
   -ms-grid-columns: auto 1fr;
   grid-template-columns: auto 1fr;
-  grid-template-areas: "image author" "image album";
+  grid-template-areas: 'image author' 'image album';
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -795,10 +795,35 @@
 
 .volume__progress {
   width: 109px;
+  display: flex;
+  align-items: center;
 }
 
 .volume__progressLine {
-  width: 109px;
+  width: 100%;
+  height: 2px;
+  appearance: none;
+  background: #797979;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+.volume__progressLine::-webkit-slider-runnable-track {
+  height: 2px;
+  background: #797979;
+  border-radius: 5px;
+}
+
+.volume__progressLine::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #1a1a1a;
+  border: 2px solid white;
+  border-radius: 50%;
+  position: relative;
+  margin-top: -7px;
 }
 
 .btn {
@@ -810,7 +835,6 @@
   stroke: #acacac;
   cursor: pointer;
 }
-
 
 .btnIcon:active svg {
   fill: transparent;
