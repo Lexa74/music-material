@@ -1,0 +1,120 @@
+.modal__btnEnter:hover {
+    background-color: #3f007d;
+}
+
+.modal__btnSignup:hover {
+    background-color: #f4f5f6;
+}
+
+.modal__btnEnter:active {
+    background-color: #271a58;
+}
+
+.modal__btnSignup:active {
+    background-color: #d9d9d9;
+}
+
+.modal__logo {
+    width: 140px;
+    height: 21px;
+    margin-bottom: 34px;
+    background-color: transparent;
+}
+
+.modal__logo img {
+    width: 140px;
+    height: auto;
+}
+
+.modal__input {
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #d0cece;
+    padding: 8px 1px;
+}
+
+.modal__input::-webkit-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input:-ms-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input::-ms-input-placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__input::placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #d0cece;
+}
+
+.modal__btnEnter {
+    &:hover {
+        border-color: #d9b6ff;
+        color: #d9b6ff;
+        cursor: pointer;
+    }
+    &:active {
+        border-color: #ad61ff;
+        color: #ad61ff;
+        cursor: pointer;
+    }
+    &.active {
+        border-color: #ad61ff;
+        color: #ad61ff;
+        cursor: pointer;
+    }
+}
+
+.modal__btnSignup {
+    &:hover {
+        border-color: #d9b6ff;
+        color: #d9b6ff;
+        cursor: pointer;
+    }
+    &:active {
+        border-color: #ad61ff;
+        color: #ad61ff;
+        cursor: pointer;
+    }
+    &.active {
+        border-color: #ad61ff;
+        color: #ad61ff;
+        cursor: pointer;
+    }
+}
+
+.login {
+    margin-bottom: 30px;
+}
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
+    color: red;
+}
