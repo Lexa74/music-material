@@ -22,7 +22,7 @@
 
 .modal__form {
     width: 366px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 12px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -114,39 +114,50 @@
 }
 
 .modal__btnEnter {
-    &:hover {
-        border-color: #d9b6ff;
-        color: #d9b6ff;
-        cursor: pointer;
-    }
-    &:active {
-        border-color: #ad61ff;
-        color: #ad61ff;
-        cursor: pointer;
-    }
-    &.active {
-        border-color: #ad61ff;
-        color: #ad61ff;
-        cursor: pointer;
-    }
+    width: 278px;
+    height: 52px;
+    background-color: #580ea2;
+    border-radius: 6px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    border: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #ffffff;
 }
 
 .modal__btnSignup {
-    &:hover {
-        border-color: #d9b6ff;
-        color: #d9b6ff;
-        cursor: pointer;
-    }
-    &:active {
-        border-color: #ad61ff;
-        color: #ad61ff;
-        cursor: pointer;
-    }
-    &.active {
-        border-color: #ad61ff;
-        color: #ad61ff;
-        cursor: pointer;
-    }
+    width: 278px;
+    height: 52px;
+    background-color: transparent;
+    border: 1px solid #d0cece;
+    border-radius: 6px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #000000;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .login {
