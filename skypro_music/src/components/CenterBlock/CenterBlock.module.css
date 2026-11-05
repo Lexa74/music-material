@@ -324,3 +324,58 @@
 
 .track__title-text { min-width: 0; }
 .track__time { display: flex; align-items: center; }
+
+
+.filter__wrapper {
+  position: relative;
+}
+
+.filter__button {
+  color: #ffffff;
+  background: transparent;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.filter__button:hover,
+.filter__button.active {
+  color: #b672ff;
+  border-color: #b672ff;
+}
+
+.filter__popup {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 180px;
+  max-width: 248px;
+  padding: 28px;
+  border-radius: 12px;
+  background: #313131;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.filter__list {
+  color: white;
+  display: flex;
+  gap: 18px;
+  height: max-content;
+  max-height: 237px;
+  overflow-y: auto;
+  flex-direction: column;
+  width: max-content;
+  max-width: 100%;
+  padding-right: 12px;
+  list-style: none;
+}
+
+.filter__list::-webkit-scrollbar { width: 4px; }
+.filter__list::-webkit-scrollbar-track { background-color: rgba(75, 73, 73, 1); }
+.filter__list::-webkit-scrollbar-thumb { background-color: white; }
+
+.filter__option {
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+}

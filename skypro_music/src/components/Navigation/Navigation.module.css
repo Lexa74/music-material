@@ -16,6 +16,9 @@
   width: 20px;
   height: 36px;
   padding: 13px 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -29,8 +32,20 @@
 }
 
 .nav__menu {
-  display: block;
+  overflow: hidden;
+  transition: opacity 180ms ease, max-height 180ms ease, visibility 180ms ease;
+}
+
+.nav__menuOpen {
+  max-height: 220px;
+  opacity: 1;
   visibility: visible;
+}
+
+.nav__menuClosed {
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .logo__image {
