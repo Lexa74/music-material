@@ -3,38 +3,26 @@
 import { useMemo, useState } from 'react';
 import styles from './CenterBlock.module.css';
 import { data } from '@/data';
-import type { Track } from '@/data';
 import TrackItem from '@/components/TrackItem/TrackItem';
-import FilterDropdown, { type FilterName } from '@/components/FilterDropdown/FilterDropdown';
 
-type FilterConfig = { name: FilterName; options: string[] };
+type FilterName = 'author' | 'year' | 'genre';
 
-function uniqueSorted(values: string[]): string[] {
-  return Array.from(new Set(values.map((value) => value.trim()).filter(Boolean))).sort((a, b) => a.localeCompare(b, 'ru'));
-}
+const filterLabels: Record<FilterName, string> = {
+  author: 'исполнителю',
+  year: 'году выпуска',
+  genre: 'жанру',
+};
 
 export default function CenterBlock() {
   const [activeFilter, setActiveFilter] = useState<FilterName | null>(null);
-  const tracks: Track[] = data;
-
-  const filters = useMemo<FilterConfig[]>(() => {
-    const authors = uniqueSorted(tracks.map((track) => track.author).filter((author) => author !== '-'));
-    const years = uniqueSorted(tracks.map((track) => String(new Date(`${track.release_date}T00:00:00`).getFullYear())))
-      .sort((a, b) => Number(b) - Number(a));
-    const genres = uniqueSorted(tracks.flatMap((track) => track.genre));
-    return [
-      { name: 'Исполнителю', options: authors },
-      { name: 'году выпуска', options: years },
-      { name: 'жанру', options: genres },
-    ];
-  }, [tracks]);
-
-  const handleFilterClick = (name: FilterName) => {
-    setActiveFilter((current) => current === name ? null : name);
-  };
+  const filterOptions = useMemo<Record<FilterName, string[]>>(() => ({
+    author: [...new Set<string>(data.map((track) => track.author))].sort((a, b) => a.localeCompare(b, 'ru')),
+    year: [...new Set<string>(data.map((track) => track.release_date.slice(0, 4)))].sort((a, b) => Number(b) - Number(a)),
+    genre: [...new Set<string>(data.flatMap((track) => track.genre))].sort((a, b) => a.localeCompare(b, 'ru')),
+  }), []);
 
   return (
-    <div className={styles.centerblock}>
+    <section className={styles.centerblock} aria-label="Список треков">
       <div className={styles.centerblock__search}>
         <svg className={styles.search__svg} aria-hidden="true"><use href="/icon/sprite.svg#icon-search" /></svg>
         <input className={styles.search__text} type="search" placeholder="Поиск" name="search" aria-label="Поиск треков" />
@@ -42,15 +30,23 @@ export default function CenterBlock() {
       <h2 className={styles.centerblock__h2}>Треки</h2>
       <div className={styles.centerblock__filter}>
         <div className={styles.filter__title}>Искать по:</div>
-        {filters.map(({ name, options }) => (
-          <div className={styles.filter__wrapper} key={name}>
+        {(Object.keys(filterLabels) as FilterName[]).map((filter) => (
+          <div className={styles.filter__group} key={filter}>
             <button
               type="button"
-              className={`${styles.filter__button} ${activeFilter === name ? styles.active : ''}`}
-              aria-expanded={activeFilter === name}
-              onClick={() => handleFilterClick(name)}
-            >{name}</button>
-            {activeFilter === name && <FilterDropdown title={name} options={options} />}
+              className={`${styles.filter__button} ${activeFilter === filter ? styles.active : ''}`}
+              aria-expanded={activeFilter === filter}
+              onClick={() => setActiveFilter((current) => current === filter ? null : filter)}
+            >
+              {filterLabels[filter]}
+            </button>
+            {activeFilter === filter && (
+              <div className={styles.filter__dropdown}>
+                <ul className={styles.filter__list}>
+                  {filterOptions[filter].map((option) => <li className={styles.filter__option} key={option}>{option}</li>)}
+                </ul>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -59,14 +55,12 @@ export default function CenterBlock() {
           <div className={`${styles.playlistTitle__col} ${styles.col01}`}>Трек</div>
           <div className={`${styles.playlistTitle__col} ${styles.col02}`}>Исполнитель</div>
           <div className={`${styles.playlistTitle__col} ${styles.col03}`}>Альбом</div>
-          <div className={`${styles.playlistTitle__col} ${styles.col04}`}>
-            <svg className={styles.playlistTitle__svg} aria-hidden="true"><use href="/icon/sprite.svg#icon-watch" /></svg>
-          </div>
+          <div className={`${styles.playlistTitle__col} ${styles.col04}`}><svg className={styles.playlistTitle__svg} aria-label="Длительность"><use href="/icon/sprite.svg#icon-watch" /></svg></div>
         </div>
         <div className={styles.content__playlist}>
-          {tracks.map((track) => <TrackItem key={track._id} track={track} />)}
+          {data.map((track) => <TrackItem key={track._id} track={track} />)}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

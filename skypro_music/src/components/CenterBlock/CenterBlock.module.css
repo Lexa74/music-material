@@ -325,37 +325,78 @@
 .track__title-text { min-width: 0; }
 .track__time { display: flex; align-items: center; }
 
-
-.filter__wrapper {
-  position: relative;
+.trackButton {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
+.trackButton:hover .track__titleLink,
+.trackButton:focus-visible .track__titleLink {
+  color: #b672ff;
+}
+
+.trackButton:focus-visible {
+  outline: 1px solid #b672ff;
+  outline-offset: 3px;
+}
+
+.track__title-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.track__playingDot {
+  display: inline-block;
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #b672ff;
+}
+
+.track__playingDot_active {
+  animation: playing-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes playing-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.72); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track__playingDot_active { animation: none; }
+}
+
+.filter__group { position: relative; display: inline-flex; }
 .filter__button {
-  color: #ffffff;
+  color: #fff;
   background: transparent;
   cursor: pointer;
+  white-space: nowrap;
   transition: color 160ms ease, border-color 160ms ease;
 }
-
 .filter__button:hover,
-.filter__button.active {
-  color: #b672ff;
-  border-color: #b672ff;
-}
-
-.filter__popup {
+.filter__button.active { color: #b672ff; border-color: #b672ff; }
+.filter__dropdown {
   position: absolute;
-  z-index: 5;
+  z-index: 20;
   top: calc(100% + 10px);
   left: 0;
   min-width: 180px;
   max-width: 248px;
-  padding: 28px;
-  border-radius: 12px;
+  padding: 24px;
   background: #313131;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 35%);
+  animation: dropdown-appear 160ms ease-out;
 }
-
 .filter__list {
   color: white;
   display: flex;
@@ -365,17 +406,45 @@
   overflow-y: auto;
   flex-direction: column;
   width: max-content;
-  max-width: 100%;
-  padding-right: 12px;
+  max-width: 200px;
+  padding-right: 8px;
   list-style: none;
 }
-
 .filter__list::-webkit-scrollbar { width: 4px; }
 .filter__list::-webkit-scrollbar-track { background-color: rgba(75, 73, 73, 1); }
-.filter__list::-webkit-scrollbar-thumb { background-color: white; }
-
-.filter__option {
-  font-size: 16px;
-  line-height: 24px;
-  white-space: nowrap;
+.filter__list::-webkit-scrollbar-thumb { background-color: white; border-radius: 4px; }
+.filter__option { font-size: 16px; line-height: 24px; white-space: nowrap; }
+.trackButton {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.trackButton:hover .track__titleLink,
+.trackButton:focus-visible .track__titleLink { color: #b672ff; }
+.trackButton:focus-visible { outline: 1px solid #b672ff; outline-offset: 3px; }
+.track__title-text { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.track__playingDot {
+  display: inline-block;
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #b672ff;
+}
+.track__playingDot_active { animation: playing-pulse 1.1s ease-in-out infinite; }
+@keyframes playing-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.72); }
+}
+@keyframes dropdown-appear {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .track__playingDot_active, .filter__dropdown { animation: none; }
+  .filter__button { transition: none; }
 }

@@ -14,22 +14,22 @@ export default function Navigation() {
         <Image src="/logo.png" width={227} height={34} className={styles.logo__image} alt="Skypro Music" priority />
       </div>
       <button
-        type="button"
         className={styles.nav__burger}
+        type="button"
         aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
         aria-expanded={isMenuOpen}
         aria-controls="main-navigation-menu"
-        onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+        onClick={() => setIsMenuOpen((open) => !open)}
       >
         <span className={styles.burger__line} />
         <span className={styles.burger__line} />
         <span className={styles.burger__line} />
       </button>
-      <div id="main-navigation-menu" className={`${styles.nav__menu} ${isMenuOpen ? styles.nav__menuOpen : styles.nav__menuClosed}`}>
+      <div id="main-navigation-menu" className={`${styles.nav__menu} ${isMenuOpen ? styles.nav__menu_open : ''}`} aria-hidden={!isMenuOpen}>
         <ul className={styles.menu__list}>
-          <li className={styles.menu__item}><Link href="/" className={styles.menu__link}>Главное</Link></li>
-          <li className={styles.menu__item}><Link href="/" className={styles.menu__link}>Мой плейлист</Link></li>
-          <li className={styles.menu__item}><Link href="/signin" className={styles.menu__link}>Войти</Link></li>
+          <li className={styles.menu__item}><Link href="/" className={styles.menu__link} tabIndex={isMenuOpen ? 0 : -1}>Главное</Link></li>
+          <li className={styles.menu__item}><Link href="/" className={styles.menu__link} tabIndex={isMenuOpen ? 0 : -1}>Мой плейлист</Link></li>
+          <li className={styles.menu__item}><Link href="/signin" className={styles.menu__link} tabIndex={isMenuOpen ? 0 : -1}>Войти</Link></li>
         </ul>
       </div>
     </nav>

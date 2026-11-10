@@ -16,9 +16,6 @@
   width: 20px;
   height: 36px;
   padding: 13px 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -32,20 +29,8 @@
 }
 
 .nav__menu {
-  overflow: hidden;
-  transition: opacity 180ms ease, max-height 180ms ease, visibility 180ms ease;
-}
-
-.nav__menuOpen {
-  max-height: 220px;
-  opacity: 1;
+  display: block;
   visibility: visible;
-}
-
-.nav__menuClosed {
-  max-height: 0;
-  opacity: 0;
-  visibility: hidden;
 }
 
 .logo__image {
@@ -76,3 +61,36 @@
   font-size: 16px;
   line-height: 24px;
 }
+
+.nav__burger {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav__burger:focus-visible,
+.menu__link:focus-visible {
+  outline: 2px solid #b672ff;
+  outline-offset: 4px;
+}
+
+.nav__menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition: grid-template-rows 220ms ease, opacity 220ms ease, visibility 220ms ease;
+}
+
+.nav__menu_open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav__menu > .menu__list { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav__menu { transition: none; }
+}
+.nav__menu > .menu__list { min-height: 0; }

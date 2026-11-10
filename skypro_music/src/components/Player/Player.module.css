@@ -346,3 +346,101 @@
   stroke: #ffffff;
   cursor: pointer;
 }
+
+.audio {
+  display: none;
+}
+
+.bar__playerProgress {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  background: #2e2e2e;
+}
+
+.progress__input {
+  display: block;
+  width: 100%;
+  height: 5px;
+  margin: 0;
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.progress__input::-webkit-slider-thumb {
+  width: 0;
+  height: 0;
+  appearance: none;
+}
+
+.progress__input::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  border: 0;
+}
+
+.player__controls button,
+.trackPlay__dislike button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.player__controls button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.player__btnPlaySvg use {
+  fill: #d9d9d9;
+}
+
+.controlActive svg {
+  stroke: #b672ff;
+}
+
+.volume__progressLine {
+  display: block;
+}
+
+.player__time {
+  position: absolute;
+  right: 24px;
+  bottom: 78px;
+  display: flex;
+  gap: 8px;
+  color: #696969;
+  font-size: 11px;
+}
+
+@media (max-width: 760px) {
+  .bar__playerBlock {
+    height: auto;
+    min-height: 82px;
+    padding: 8px 12px;
+  }
+
+  .player__controls {
+    padding: 0 10px;
+  }
+
+  .player__btnPrev,
+  .player__btnPlay,
+  .player__btnNext,
+  .player__btnRepeat {
+    margin-right: 8px;
+  }
+
+  .bar__volumeBlock {
+    padding: 0 8px;
+  }
+
+  .volume__progress {
+    width: 70px;
+  }
+
+  .player__time {
+    display: none;
+  }
+}

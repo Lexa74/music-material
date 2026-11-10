@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import './globals.css';
+import StoreProvider from '@/store/StoreProvider';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru" className={montserrat.variable}>
-      <body>{children}</body>
+      <body><StoreProvider>{children}</StoreProvider></body>
     </html>
   );
 }
